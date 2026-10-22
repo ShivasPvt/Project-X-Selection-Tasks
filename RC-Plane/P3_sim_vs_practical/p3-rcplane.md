@@ -9,9 +9,6 @@
 
 **We will use a hybrid approach: _simulate to decide, build to confirm._**
 Hand calculations and simulation rule out bad designs cheaply; a low-cost foam prototype is built early; test data is fed back to correct the simulation. With four weeks, about ₹15,000 and a competition 2,000 km away, we can afford neither many crashed prototypes nor blind trust in untested numbers. The hybrid approach reduces both risks.
-
-**Assumptions and weight build-up:** see [RC_plane_weight_buildup.xlsx](RC_plane_weight_buildup.xlsx) (tabs: *Assumptions*, *Weight Build-up*).
-
 ---
 
 ## 1. Advantages and limitations

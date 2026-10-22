@@ -1,7 +1,7 @@
 # Technical Proposal: Development Approach for an RC Aircraft
 ### IIT Mandi Aeromodelling Team — Techfest 2026, IIT Bombay (16–18 Dec 2026)
 
-**Author:** [Your name] · **Role:** Lead designer · **Date:** 23/10/2026
+**Author:** S SHIVAS · **Role:** Lead designer · **Date:** 23/10/2026
 
 ---
 

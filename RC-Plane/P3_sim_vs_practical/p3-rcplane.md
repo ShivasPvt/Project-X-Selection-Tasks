@@ -1,5 +1,5 @@
 # Technical Proposal: Development Approach for an RC Aircraft
-### IIT Mandi Aeromodelling Team — Techfest 2026, IIT Bombay (16–18 Dec 2026)
+### IIT Mandi Aeromodelling Team - Techfest 2026, IIT Bombay (16–18 Dec 2026)
 
 **Author:** S SHIVAS · **Role:** Lead designer · **Date:** 23/10/2026
 
@@ -13,12 +13,12 @@ Hand calculations and simulation rule out bad designs cheaply; a low-cost foam p
 
 ## 1. Advantages and limitations
 
-| | **Simulation-led design** — design and check on the computer first | **Prototype-led design** — build, fly, fix, repeat |
+| | **Simulation-led design** - design and check on the computer first | **Prototype-led design** - build, fly, fix, repeat |
 |---|---|---|
-| **Advantages** | • Trying ideas is nearly free — changing span or airfoil is an edit, not a new wing<br>• Shows what is hard to measure: stability, lift spread along the wing, stress in the spar<br>• Catches major mistakes (e.g. wing too small for the weight) before money is spent<br>• Team can design while parts are still in transit to Mandi | • Real-world truth — if it flies, it flies<br>• Builds construction and piloting skill with every iteration<br>• Finds what simulation cannot: bad CG, weak joints, vibration, weak servos<br>• Pilot practises on the actual competition aircraft |
-| **Limitations** | • Only as good as its inputs — a wrong weight gives wrong answers, with no warning<br>• Assumes a perfect, smooth, exactly-built plane<br>• Ignores wind, vibration, rough runways and pilot error<br>• Learning curve; easy to over-trust a neat graph | • Every crash costs parts (₹105 prop, ₹119 servo, ₹499 motor) and days of repair<br>• Hard to tell *why* it failed when several things changed at once<br>• Can waste weeks fixing a design that was flawed from the start<br>• Waiting for replacement parts in Mandi is slow |
+| **Advantages** | • Trying ideas is nearly free - changing span or airfoil is an edit, not a new wing<br>• Shows what is hard to measure: stability, lift spread along the wing, stress in the spar<br>• Catches major mistakes (e.g. wing too small for the weight) before money is spent<br>• Team can design while parts are still in transit to Mandi | • Real-world truth - if it flies, it flies<br>• Builds construction and piloting skill with every iteration<br>• Finds what simulation cannot: bad CG, weak joints, vibration, weak servos<br>• Pilot practises on the actual competition aircraft |
+| **Limitations** | • Only as good as its inputs - a wrong weight gives wrong answers, with no warning<br>• Assumes a perfect, smooth, exactly-built plane<br>• Ignores wind, vibration, rough runways and pilot error<br>• Learning curve; easy to over-trust a neat graph | • Every crash costs parts (₹105 prop, ₹119 servo, ₹499 motor) and days of repair<br>• Hard to tell *why* it failed when several things changed at once<br>• Can waste weeks fixing a design that was flawed from the start<br>• Waiting for replacement parts in Mandi is slow |
 
-Each method's weakness is the other's strength — which is why we combine them.
+Each method's weakness is the other's strength - which is why we combine them.
 
 ---
 
@@ -26,7 +26,7 @@ Each method's weakness is the other's strength — which is why we combine them.
 
 | Factor | Simulation-led | Prototype-led | **Hybrid (chosen)** |
 |---|---|---|---|
-| **Cost** | Low — no materials | High — materials and crash repairs | Medium — fewer wasted builds |
+| **Cost** | Low - no materials | High - materials and crash repairs | Medium - fewer wasted builds |
 | **Time** | Hours per design check | Days per build-fly-repair cycle | Short design phase, 2 focused builds |
 | **Accuracy** | Good for trends; misses real-world effects | Real, but noisy (pilot, wind) | Simulation corrected by test data |
 | **Iteration speed** | Very fast | Slow | Fast early, fewer but better builds later |
@@ -81,7 +81,7 @@ flowchart TD
 | Study through **simulation** | Why |
 |---|---|
 | 1. Lift, drag and stall speed of the wing | Cannot measure without a wind tunnel |
-| 2. Stability — will the plane recover from a gust? | Better known before risking a crash |
+| 2. Stability - will the plane recover from a gust? | Better known before risking a crash |
 | 3. Stress and bending in the wing spar | Avoid wing failure in turns or hard landings |
 
 | Verify **physically** | Why | How |
@@ -119,7 +119,7 @@ $$V_{\text{stall,new}} = V_{\text{stall,pred}} \cdot \sqrt{\frac{m_{\text{meas}}
 
 and a measured glide ratio gives the real drag of the aircraft as *D* = *W* ÷ (*L/D*).
 
-Repeat steps 1–3 after every design change. Once |*e*| ≤ *ε* for all measured quantities, the model describes the real aircraft and can be trusted to predict the effect of further changes.
+Repeat steps 1-3 after every design change. Once |*e*| ≤ *ε* for all measured quantities, the model describes the real aircraft and can be trusted to predict the effect of further changes.
 
 ---
 
@@ -129,9 +129,9 @@ Repeat steps 1–3 after every design change. Once |*e*| ≤ *ε* for all measur
 
 | Cause | Why simulation missed it |
 |---|---|
-| Too heavy — extra glue, wires, heavier battery | Used planned weight |
-| Too little thrust — weak motor/prop, voltage sag, cold battery at Kamand | Used datasheet thrust |
-| Wrong CG — nose-heavy can't lift off; tail-heavy stalls | Assumed ideal CG |
+| Too heavy - extra glue, wires, heavier battery | Used planned weight |
+| Too little thrust - weak motor/prop, voltage sag, cold battery at Kamand | Used datasheet thrust |
+| Wrong CG - nose-heavy can't lift off; tail-heavy stalls | Assumed ideal CG |
 | Elevator reversed or too little travel | Controls not modelled |
 | Warped wing or wrong wing angle | Assumed perfect build |
 | Rough grass, tailwind, short runway; drag from gear and wires | Assumed ideal, smooth conditions |

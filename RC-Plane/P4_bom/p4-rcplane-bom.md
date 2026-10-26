@@ -1,15 +1,15 @@
 # Problem 4 — Bill of Materials for an RC Aircraft
 ### IIT Mandi Aeromodelling Team — Techfest 2026, IIT Bombay
 
-**Author:** S Shivas · **Date:** 23/10/2026
+**Author:** S SHIVAS · **Date:** 23/10/2026
 
-**Full BOM, prices, links and calculations:** [P4_RC_plane_BOM.xlsx](P4_RC_plane_BOM.xlsx) — tabs *Component Options*, *Configurations*, *Engineering Checks*.
+**Full BOM, prices, links and calculations:** [P4_RC_plane_BOM.xlsx](P4_RC_plane_BOM.xlsx) — tabs *Component Options*, *Configurations*, *Engineering Checks*, *Weight Build-up*.
 
 ---
 
 ## Aircraft brief
 
-Electric, single-motor, high-wing trainer with a 1.1 m wingspan, flown by a 2.4 GHz radio, built from foam board so it is light and quick to repair, and able to take off from the ground or by hand launch. All-up mass ≈ 1,144 g (weight build-up from P3).
+Electric, single-motor, high-wing trainer with a 1.1 m wingspan, flown by a 2.4 GHz radio, built from foam board so it is light and quick to repair, and able to take off from the ground or by hand launch. All-up mass ≈ 1,144 g (*Weight Build-up* tab).
 
 ---
 
@@ -111,7 +111,7 @@ Foam board wins because the first prototype is expected to crash: parts can be r
 
 ## Bonus — Take-off mass and propulsion check
 
-- **Take-off mass:** ≈ 1,144 g (≈ 844 g empty + 300 g payload), from the weight build-up.
+- **Take-off mass:** ≈ 1,144 g (≈ 844 g empty + 300 g payload), from the *Weight Build-up* tab of the spreadsheet: battery and electronics ≈ 315 g, structure ≈ 374 g (foam board and carbon spar), glue and hardware ≈ 155 g.
 - **Thrust:** *T/W* = 0.77, above the 0.5 needed for a trainer to climb comfortably.
 - **Power:** 173 W ÷ 1.144 kg = **151 W/kg**, enough for a trainer.
 - **Conclusion:** the A2212 1000 KV + 1045 propeller on 3S is sufficient, with spare thrust for a heavier-than-planned build.

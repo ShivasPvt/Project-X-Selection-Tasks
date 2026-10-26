@@ -31,7 +31,7 @@ The design is a **locked-nose glider** in the style of the traditional *Nakamura
 |---|---|---|
 | 1 | ![](images/step01_precrease.jpg) | Crease the centre line and the corner diagonals on a flat A4 sheet. |
 | 2 | ![](images/step02_half_fold.jpg) | Fold in half lengthwise to set the centre crease; unfold. |
-| 3 | ![](images/step03_first_corner.jpg) | Fold the first top corner to the diagonal crese. |
+| 3 | ![](images/step03_first_corner.jpg) | Fold the first top corner to the diagonal crease. |
 | 4 | ![](images/step04_tip_down.jpg) | Fold the second corner in, then fold the pointed tip down to form a flat top edge. |
 | 5 | ![](images/step05_corners_again.jpg) | Fold the new top corners to the centre line again, leaving the tip of the flap showing. |
 | 6 | ![](images/step06_nose_lock.jpg) | Fold the small exposed tip up over the corners — this **locks** the nose layers together. |

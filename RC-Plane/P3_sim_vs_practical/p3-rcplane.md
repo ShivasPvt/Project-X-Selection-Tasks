@@ -3,24 +3,22 @@
 
 **Author:** S SHIVAS · **Role:** Lead designer · **Date:** 23/10/2026
 
+**Assumptions:** every figure used below, with its source, is listed in [P3_assumptions_and_weight.xlsx](P3_assumptions_and_weight.xlsx) (tabs *Assumptions* and *Weight Build-up*).
+
 ---
 
 ## Decision
 
-**We will use a hybrid approach: _simulate to decide, build to confirm._**
-Hand calculations and simulation rule out bad designs cheaply; a low-cost foam prototype is built early; test data is fed back to correct the simulation. With four weeks, about ₹15,000 and a competition 2,000 km away, we can afford neither many crashed prototypes nor blind trust in untested numbers. The hybrid approach reduces both risks.
----
+**We will use a hybrid approach: _simulate to decide, build to confirm._** Hand calculations and simulation rule out bad designs cheaply; a low-cost foam prototype is built early; test data is fed back to correct the simulation. With four weeks, about ₹13,500 and a competition 2,000 km away, we can afford neither many crashed prototypes nor blind trust in untested numbers. The hybrid approach reduces both risks.
 
 ## 1. Advantages and limitations
 
-| | **Simulation-led design** - design and check on the computer first | **Prototype-led design** - build, fly, fix, repeat |
+| | **Simulation-led** - design and check on the computer first | **Prototype-led** - build, fly, fix, repeat |
 |---|---|---|
-| **Advantages** | • Trying ideas is nearly free - changing span or airfoil is an edit, not a new wing<br>• Shows what is hard to measure: stability, lift spread along the wing, stress in the spar<br>• Catches major mistakes (e.g. wing too small for the weight) before money is spent<br>• Team can design while parts are still in transit to Mandi | • Real-world truth - if it flies, it flies<br>• Builds construction and piloting skill with every iteration<br>• Finds what simulation cannot: bad CG, weak joints, vibration, weak servos<br>• Pilot practises on the actual competition aircraft |
-| **Limitations** | • Only as good as its inputs - a wrong weight gives wrong answers, with no warning<br>• Assumes a perfect, smooth, exactly-built plane<br>• Ignores wind, vibration, rough runways and pilot error<br>• Learning curve; easy to over-trust a neat graph | • Every crash costs parts (₹105 prop, ₹119 servo, ₹499 motor) and days of repair<br>• Hard to tell *why* it failed when several things changed at once<br>• Can waste weeks fixing a design that was flawed from the start<br>• Waiting for replacement parts in Mandi is slow |
+| **Advantages** | • Trying ideas is nearly free - changing span or airfoil is an edit, not a new wing<br>• Shows what is hard to measure: stability, lift spread, spar stress<br>• Catches major mistakes before money is spent | • Real-world truth - if it flies, it flies<br>• Builds construction and piloting skill<br>• Finds what simulation cannot: bad CG, weak joints, vibration |
+| **Limitations** | • Only as good as its inputs - a wrong weight gives wrong answers, with no warning<br>• Assumes a perfect, exactly-built plane<br>• Ignores wind, vibration, rough runways, pilot error | • Every crash costs parts (₹105 prop, ₹119 servo, ₹499 motor) and days<br>• Hard to tell *why* it failed when several things changed<br>• Can waste weeks on a design flawed from the start |
 
 Each method's weakness is the other's strength - which is why we combine them.
-
----
 
 ## 2. Comparison
 
@@ -33,101 +31,49 @@ Each method's weakness is the other's strength - which is why we combine them.
 | **Failure detection** | Design flaws, before building | Build and real-world flaws, after building | Both |
 | **Final performance** | Risky if never flown | Works, but may not be the best design | Most reliable |
 
----
-
 ## 3. Development workflow
 
 ```mermaid
-flowchart TD
-    A[1. Mission requirements<br/>Techfest rules, payload, budget] --> B[2. Hand calculations<br/>weight, wing area, thrust]
-    B --> C[3. Simulate and design<br/>lift, stability, strength]
-    C --> D[4. Build cheap prototype<br/>foam board, weigh every part]
-    D --> E[5. Ground and flight tests<br/>weight, CG, thrust, glide, flight]
-    E --> F{6. Matches prediction?}
+flowchart LR
+    A[Requirements] --> B[Hand<br/>calculations] --> C[Simulate<br/>and design] --> D[Build<br/>prototype] --> E[Ground and<br/>flight tests] --> F{Matches<br/>prediction?}
+    F -- Yes --> G[Final build<br/>and practice]
     F -- No: update model --> C
-    F -- Yes --> G[7. Final build and practice]
 ```
 
-| Stage | What we do | Output |
-|---|---|---|
-| 1. Requirements | Read Techfest rulebook; fix span, payload, budget, deadline | Requirement list |
-| 2. Hand calculations | Size the wing and motor (below) | First-size numbers |
-| 3. Simulate & design | Choose airfoil; check stability and spar strength; draw parts | Design + predictions |
-| 4. Manufacture | Cut foam, fit spar, install electronics; weigh every part | Prototype + weight log |
-| 5. Test | Ground tests, then first flights | Measured data |
-| 6. Refine | Compare with predictions; update model; fix design | Improved design |
-| 7. Final | Final build, trimming, pilot practice | Competition aircraft |
+**Stages:** requirements from the Techfest rulebook → first sizing by hand (below) → simulate lift, stability and spar strength → build a foam prototype, weighing every part → ground tests (weight, CG, thrust, controls) and flights → compare with predictions. The **No** loop back to design is the core of the approach: every test makes the model more accurate.
 
-**First-size calculation (stage 2):**
-
-| Quantity | Formula |
-|---|---|
-| Weight | *W* = *m* · *g* |
-| Wing area | *S* = *W* ÷ (*W/S*) |
-| Mean chord | *c* = *S* ÷ *b* |
-| Aspect ratio | *AR* = *b*² ÷ *S* |
-| Lift | *L* = ½ · *ρ* · *V*² · *S* · *C*<sub>L</sub> |
-| Stall speed | *V*<sub>stall</sub> = √( 2*W* ÷ (*ρ* · *S* · *C*<sub>L,max</sub>) ) |
-| Take-off speed | *V*<sub>TO</sub> ≈ 1.2 · *V*<sub>stall</sub> |
-| Thrust-to-weight ratio | *T/W* = static thrust ÷ weight |
-| CG position | *x*<sub>CG</sub> = Σ(*m*<sub>i</sub> · *x*<sub>i</sub>) ÷ Σ*m*<sub>i</sub> |
-
-*m* = all-up mass · *g* = 9.81 m/s² · *W/S* = wing loading · *b* = wingspan · *ρ* = air density · *V* = airspeed · *C*<sub>L</sub> = lift coefficient · *m*<sub>i</sub>, *x*<sub>i</sub> = mass and position of each component
-
----
+**First-size calculation (stage 2):** weight *W* = *mg* · wing area *S* = *W* ÷ (*W/S*) · chord *c* = *S* ÷ *b* · aspect ratio *AR* = *b*² ÷ *S* · lift *L* = ½*ρV*²*SC*<sub>L</sub> · stall speed *V*<sub>stall</sub> = √(2*W* ÷ *ρSC*<sub>L,max</sub>) · take-off speed ≈ 1.2 *V*<sub>stall</sub> · thrust-to-weight *T/W* · CG *x*<sub>CG</sub> = Σ*m*<sub>i</sub>*x*<sub>i</sub> ÷ Σ*m*<sub>i</sub>. (*W/S* = wing loading, *b* = span, *ρ* = air density, *C*<sub>L</sub> = lift coefficient.)
 
 ## 4. Parameters: simulate vs verify
 
-| Study through **simulation** | Why |
-|---|---|
-| 1. Lift, drag and stall speed of the wing | Cannot measure without a wind tunnel |
-| 2. Stability - will the plane recover from a gust? | Better known before risking a crash |
-| 3. Stress and bending in the wing spar | Avoid wing failure in turns or hard landings |
-
-| Verify **physically** | Why | How |
+| Parameter | Method | Why |
 |---|---|---|
-| 1. Actual weight and CG | Builds always come out heavier than planned | Kitchen scale; balance on fingertips |
-| 2. Static thrust | Real thrust is below datasheet; battery voltage sags | Plane strapped to a scale at full throttle |
-| 3. Control surface direction and travel | Reversed or weak controls cannot be simulated | Move each stick; measure deflection |
-
----
+| Lift, drag and stall speed of the wing | **Simulate** | Cannot measure without a wind tunnel |
+| Stability - will the plane recover from a gust? | **Simulate** | Better known before risking a crash |
+| Stress and bending in the wing spar | **Simulate** | Avoid wing failure in turns or hard landings |
+| Actual weight and CG | **Verify** - scale, balance on two supports | Builds always come out heavier than planned |
+| Static thrust | **Verify** - plane on a scale at full throttle | Real thrust is below datasheet; battery voltage sags |
+| Control direction and travel | **Verify** - move each stick, measure deflection | Reversed or weak controls cannot be simulated |
 
 ## 5. Validating the simulation
 
-Measure a quantity on the real aircraft, compare it with the predicted value, and correct the model when they disagree.
+**1 — Measure** (repeat each test *n* times; mean *x̄* = Σ*x*<sub>i</sub> ÷ *n*, scatter *s* = √(Σ(*x*<sub>i</sub> − *x̄*)² ÷ (*n* − 1))):
 
-**Step 1 — Measure (repeat each test *n* times and average):**
-
-| Quantity | How it is measured | Formula |
+| Quantity | Measurement | Formula |
 |---|---|---|
-| Mass and weight | Weigh the complete aircraft | *W* = *m*<sub>meas</sub> · *g* |
-| Static thrust | Aircraft on a scale, nose up, full throttle; *Δm* = change in scale reading | *T* = *Δm* · *g* · *T/W* = *T* ÷ *W* |
-| CG position | Rest the aircraft on two supports a distance *L* apart; *R*<sub>1</sub>, *R*<sub>2</sub> = scale readings under each | *x*<sub>CG</sub> = (*R*<sub>2</sub> · *L*) ÷ (*R*<sub>1</sub> + *R*<sub>2</sub>), measured from support 1 |
-| Glide ratio | Unpowered hand-launch from height *h*; measure ground distance *d* and time *t* | *L/D* = *d* ÷ *h* · *γ* = tan⁻¹(*h* ÷ *d*) · sink rate *v*<sub>s</sub> = *h* ÷ *t* |
-| Flight time | Fly until the low-voltage alarm; *C*<sub>used</sub> = charge put back by the charger | average current *I* = *C*<sub>used</sub> ÷ *t*<sub>flight</sub> |
-| Average of repeated tests | *x*<sub>1</sub> … *x*<sub>n</sub> | *x̄* = Σ*x*<sub>i</sub> ÷ *n* · *s* = √( Σ(*x*<sub>i</sub> − *x̄*)² ÷ (*n* − 1) ) |
+| Weight | Weigh the complete aircraft | *W* = *m*<sub>meas</sub> *g* |
+| Static thrust | Change in scale reading *Δm* at full throttle | *T* = *Δm g*;  *T/W* = *T* ÷ *W* |
+| CG | Readings *R*<sub>1</sub>, *R*<sub>2</sub> on two supports *L* apart | *x*<sub>CG</sub> = *R*<sub>2</sub>*L* ÷ (*R*<sub>1</sub> + *R*<sub>2</sub>) from support 1 |
+| Glide | Unpowered launch from height *h*: distance *d*, time *t* | *L/D* = *d* ÷ *h*;  sink rate *v*<sub>s</sub> = *h* ÷ *t* |
+| Power use | Charge replaced *C*<sub>used</sub> after a flight of *t*<sub>flight</sub> | *I* = *C*<sub>used</sub> ÷ *t*<sub>flight</sub> |
 
-**Step 2 — Compare:**
+**2 — Compare:** error *e* = (*x*<sub>meas</sub> − *x*<sub>pred</sub>) ÷ *x*<sub>pred</sub> × 100%. The prediction is accepted if |*e*| ≤ *ε*, a tolerance the team sets **before** testing; a difference smaller than the test scatter *s* is not a model error.
 
-$$e = \frac{x_{\text{meas}} - x_{\text{pred}}}{x_{\text{pred}}} \times 100\%$$
-
-The prediction is accepted if |*e*| ≤ *ε*, where *ε* is the tolerance the team sets for each quantity before testing. A difference smaller than the scatter between repeated tests (*s*) cannot be called a model error.
-
-**Step 3 — Correct and re-predict:** replace the predicted value with the measured one and recompute what depends on it. For example, a mass change alters stall speed as
-
-$$V_{\text{stall,new}} = V_{\text{stall,pred}} \cdot \sqrt{\frac{m_{\text{meas}}}{m_{\text{pred}}}}$$
-
-and a measured glide ratio gives the real drag of the aircraft as *D* = *W* ÷ (*L/D*).
-
-Repeat steps 1-3 after every design change. Once |*e*| ≤ *ε* for all measured quantities, the model describes the real aircraft and can be trusted to predict the effect of further changes.
-
----
+**3 — Correct and re-predict:** replace the prediction with the measurement and recompute what depends on it - e.g. *V*<sub>stall,new</sub> = *V*<sub>stall,pred</sub> · √(*m*<sub>meas</sub> ÷ *m*<sub>pred</sub>), and real drag *D* = *W* ÷ (*L/D*). Once |*e*| ≤ *ε* for every measured quantity, the model describes the real aircraft and can be trusted for further changes.
 
 ## 6. Simulates well, but the prototype won't take off
 
-**Plausible causes** (each one a real-world effect the simulation did not include):
-
-| Cause | Why simulation missed it |
+| Plausible cause | Why simulation missed it |
 |---|---|
 | Too heavy - extra glue, wires, heavier battery | Used planned weight |
 | Too little thrust - weak motor/prop, voltage sag, cold battery at Kamand | Used datasheet thrust |
@@ -136,20 +82,18 @@ Repeat steps 1-3 after every design change. Once |*e*| ≤ *ε* for all measured
 | Warped wing or wrong wing angle | Assumed perfect build |
 | Rough grass, tailwind, short runway; drag from gear and wires | Assumed ideal, smooth conditions |
 
-**Diagnostic plan** — cheapest and most likely checks first; change **one** thing at a time:
+**Diagnostic plan** - cheapest and most likely checks first; change **one** thing at a time (design values from the assumptions sheet):
 
-1. **Weigh it.** Over 1,200 g? Strip excess glue and tape, shorten wires.
-2. **Check CG** at the 65 mm mark. Off? Move the battery.
-3. **Check controls.** Wrong direction or too little travel? Reverse channel / adjust linkage.
-4. **Measure thrust.** Below 600 g? Larger prop, warm fresh battery, or different motor.
-5. **Glide test, motor off.** Smooth glide → wing and CG are fine, so the problem is **power or runway**. Dives or stalls → the problem is **CG or wing**.
+1. **Weigh it.** Over the 1,200 g design weight? Strip excess glue and tape, shorten wires.
+2. **Check CG** at 65 mm behind the leading edge (25% of chord). Off? Move the battery.
+3. **Check controls.** Wrong direction or too little travel? Reverse the channel or adjust the linkage.
+4. **Measure thrust.** Below 600 g (50% of weight)? Larger prop, warm fresh battery, or different motor.
+5. **Glide test, motor off.** Smooth glide → wing and CG are fine, so the problem is **power or runway**. Dives or stalls → **CG or wing**.
 6. **Inspect the wing** for twist and correct mounting angle.
 7. **Change take-off method:** smoother, longer runway or hand-launch.
 8. **Update the model** with every real value found.
 
----
-
-## Bonus — Four-week schedule with contingency
+## Bonus - Four-week schedule with contingency
 
 | Week | Dates | Work | Milestone |
 |---|---|---|---|
@@ -157,7 +101,7 @@ Repeat steps 1-3 after every design change. Once |*e*| ≤ *ε* for all measured
 | 2 | 16–22 Nov | Build prototype; ground tests (weight, CG, thrust, controls) | Ready to fly |
 | 3 | 23–29 Nov | First flights, compare with predictions, fix, build improved version | Stable plane |
 | 4 | 30 Nov – 6 Dec | Trimming, pilot practice, pack-and-reassemble test | Competition-ready |
-| Buffer | 7–12 Dec | **Contingency** for crashes, repairs, late parts | — |
+| Buffer | 7–12 Dec | **Contingency** for crashes, repairs, late parts | - |
 | Travel | 13–15 Dec | Mandi → Mumbai | Techfest 16 Dec |
 
 ```mermaid
@@ -185,11 +129,10 @@ gantt
 
 **Main risks:** crash → ₹2,000 spares kit and time for a second airframe; late parts → order on day 1 from two suppliers; transit damage → detachable wing, padded box, spares and glue gun carried to the venue.
 
----
-
 ## References
 
-1. Component prices: Probots (probots.co.in), Robu (robu.in), checked 23 Oct 2026.
-2. Club learning playlist — https://youtube.com/playlist?list=PLpdZAunkELHiN85JpFReHTf-5X-gh6MhV
+1. Anderson, J. D., *Introduction to Flight*, McGraw-Hill — lift, stall speed and glide relations.
+2. Component prices: Probots (probots.co.in), Robu (robu.in), checked 23 Oct 2026.
 3. Techfest 2026, IIT Bombay — official competition rulebook.
-4. AI use: AI tools were used to support research, structure this proposal and look up component prices. All content was reviewed by the author.
+4. Club learning playlist — https://youtube.com/playlist?list=PLpdZAunkELHiN85JpFReHTf-5X-gh6MhV
+5. AI use: AI tools supported the research, structure and price look-ups; all content was reviewed by the author.

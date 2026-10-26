@@ -123,4 +123,4 @@ Foam board wins because the first prototype is expected to crash: parts can be r
 1. Component prices and specifications: Probots (probots.co.in), Robu (robu.in), Zbotic (zbotic.in), checked 23 Oct 2026 — links in the spreadsheet.
 2. A2212 1000 KV thrust table: Thingbits — https://thingbits.in/products/a2212-brushless-fpv-drone-motor
 3. Club learning playlist — https://youtube.com/playlist?list=PLpdZAunkELHiN85JpFReHTf-5X-gh6MhV
-4. AI use: Claude (Anthropic) was used to research component prices and specifications, build the BOM spreadsheet and structure this report. All content was reviewed by the author.
+4. AI use: AI tools were used to support research on component prices and specifications, build the BOM spreadsheet and structure this report. All content was reviewed by the author.

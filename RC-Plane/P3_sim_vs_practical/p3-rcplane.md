@@ -192,4 +192,4 @@ gantt
 1. Component prices: Probots (probots.co.in), Robu (robu.in), checked 23 Oct 2026.
 2. Club learning playlist — https://youtube.com/playlist?list=PLpdZAunkELHiN85JpFReHTf-5X-gh6MhV
 3. Techfest 2026, IIT Bombay — official competition rulebook.
-4. AI use: Claude (Anthropic) was used to explain concepts, structure this proposal and look up component prices. All content was reviewed by the author.
+4. AI use: AI tools were used to support research, structure this proposal and look up component prices. All content was reviewed by the author.

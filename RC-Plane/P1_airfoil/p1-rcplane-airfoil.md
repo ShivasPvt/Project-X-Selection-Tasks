@@ -141,4 +141,4 @@ An airfoil's numbers describe an infinitely long wing section. A real 3D wing lo
 3. Sharpe, P., NeuralFoil — https://github.com/peterdsharpe/NeuralFoil
 4. Airfoil Tools (XFOIL polars for cross-checking) — http://airfoiltools.com
 5. Club learning playlist — https://youtube.com/playlist?list=PLpdZAunkELHiN85JpFReHTf-5X-gh6MhV
-6. AI use: Claude (Anthropic) was used to run the airfoil analysis, draw the figures and structure this report. All content was reviewed by the author.
+6. AI use: AI tools were used to support research, run the airfoil analysis and structure this report. All content was reviewed by the author.
